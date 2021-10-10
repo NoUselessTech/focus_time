@@ -19,8 +19,8 @@ while 1:
             script_file.write(script)
         print("Successfully set productivity boosts.\n")
 
-    except:
-        print("Unable to run script. Likely due to network issues.\n")
+    except Exception as error:
+        print(error)
         
     time.sleep(300)
 exit
