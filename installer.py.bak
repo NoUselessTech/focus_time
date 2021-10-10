@@ -29,7 +29,6 @@ def set_script():
 
     print("Script created")
     return True
-    return True
 
 def set_cron():
     cron_file = open("/etc/crontab", "r")

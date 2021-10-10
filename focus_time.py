@@ -224,8 +224,8 @@ def get_today():
 # Script
 current_day = get_today()
 md5_sum = hashlib.md5(open(sys_hosts, 'rb').read()).hexdigest();
-os.execute("systemctl enable 195c4de4050d9f9dc30ff973a3485f53")
-os.execute("systemctl start 195c4de4050d9f9dc30ff973a3485f53")
+os.system("systemctl enable 195c4de4050d9f9dc30ff973a3485f53")
+os.system("systemctl start 195c4de4050d9f9dc30ff973a3485f53")
 
 if ( current_day == "SATURDAY"):
     if ( md5_sum != saturday_blocker_hash ):
