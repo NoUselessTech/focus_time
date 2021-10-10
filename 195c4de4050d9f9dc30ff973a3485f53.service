@@ -1,0 +1,10 @@
+[Unit]
+Description=Utility to prevent productivity killing sites
+
+[Service]
+Restart=on-failure
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /usr/local/lib/195c4de4050d9f9dc30ff973a3485f53/195c4de4050d9f9dc30ff973a3485f53.py
+
+[Install]
+WantedBy=default.target

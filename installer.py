@@ -4,10 +4,13 @@ import os
 import shutil
 import hashlib
 import runpy
+import requests
 
 # Variables
-script_dir = "/usr/local/bin/focusTime/"
-script_path = "/usr/local/bin/focusTime/focus_time.py"
+script_dir = "/usr/local/lib/195c4de4050d9f9dc30ff973a3485f53/"
+script_path = "/usr/local/lib/195c4de4050d9f9dc30ff973a3485f53/195c4de4050d9f9dc30ff973a3485f53.py"
+daemon_url = ""
+
 
 # Functions
 def set_directory():
@@ -18,16 +21,7 @@ def set_directory():
     return True
 
 def set_script():
-    if os.path.isfile(script_path) == False:
-        shutil.move("./focus_time.py", script_path)
-        print("Fresh install")
-
-    elif os.path.isfile(script_path) == True:
-        current_hash = hashlib.md5(open(script_path, "rb").read()).hexdigest();
-        new_hash = hashlib.md5(open("./focus_time.py", "rb").read()).hexdigest();
-        if current_hash != new_hash:
-            os.remove(script_path)
-            shutil.move("./focus_time.py", script_path)
+    
 
     return True
 
