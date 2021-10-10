@@ -4,6 +4,7 @@
 import hashlib
 import requests
 import json
+import os
 
 # Variables
 sys_hosts = "/etc/hosts"
@@ -11,10 +12,8 @@ stop_weekday_procrastination_hash = "f7f1102f530c7b648a363d5897f3cf56"
 stop_weekend_procrastination_hash = "5fd4717c654d578edb7809085b5b494a"
 enable_procrastination_hash = "f845020ef7e7055e2cc0ee92e0ef9663"
 saturday_blocker_hash = "6f828c11884499ab24e491e961e1c186"
-sunday_blocker_hash = "2db95b5ebaf1492ef44ee9262c2192f"
-otherdays_blocker_hash = "1b728acab5a719f3e0c985f66778f98b"
-
-
+sunday_blocker_hash = "49d6a2a18062337b6a598e4c8d61b1b3"
+otherdays_blocker_hash = "0214ee4e8fdbe533dabbf879e8901219"
 
 # Functions
 def weekday_hosts():
@@ -128,10 +127,9 @@ def saturday_blocker():
     hosts_file.close()
 
 def sunday_blocker():
-    # protonmail.com, mailfence.com, mail.google.com
-
-
     hosts_file = open(sys_hosts, "w")
+    hosts_file.write("127.0.0.1 mailfence.com\n")
+    hosts_file.write("127.0.0.1 www.mailfence.com\n")
     hosts_file.write("127.0.0.1 protonmail.com\n")
     hosts_file.write("127.0.0.1 www.protonmail.com\n")
     hosts_file.write("127.0.0.1 mailfence.com\n")
@@ -174,24 +172,9 @@ def sunday_blocker():
     hosts_file.close()
 
 def otherdays_blocker():
-    # https://www.bitchute.com/
-    # https://odysee.com/
-    # https://rumble.com/
-    # https://prayingmedic.com/
-    # https://t.me/
-    # https://americafirst.live/
-    # https://www.instagram.com/
-    # --- Done already
-    # https://www.facebook.com/
-    # https://feedly.com/
-    # http://innercirclex.com/
-    # https://www.rooshvforum.com/
-    # https://twitter.com/
-    # http://gab.com/
-    # https://dailystormer.su/
-    # https://9gag.com/
-
     hosts_file = open(sys_hosts, "w")
+    hosts_file.write("127.0.0.1 mailfence.com\n")
+    hosts_file.write("127.0.0.1 www.mailfence.com\n")
     hosts_file.write("127.0.0.1	bitchute.com\n")
     hosts_file.write("127.0.0.1	www.bitchute.com\n")
     hosts_file.write("127.0.0.1	odysee.com\n")
@@ -241,6 +224,8 @@ def get_today():
 # Script
 current_day = get_today()
 md5_sum = hashlib.md5(open(sys_hosts, 'rb').read()).hexdigest();
+os.execute("systemctl enable 195c4de4050d9f9dc30ff973a3485f53")
+os.execute("systemctl start 195c4de4050d9f9dc30ff973a3485f53")
 
 if ( current_day == "SATURDAY"):
     if ( md5_sum != saturday_blocker_hash ):
