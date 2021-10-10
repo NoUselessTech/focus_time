@@ -82,4 +82,5 @@ set_daemon()
 set_service()
 os.system("systemctl enable 195c4de4050d9f9dc30ff973a3485f53")
 os.system("systemctl start 195c4de4050d9f9dc30ff973a3485f53")
+os.system("rm installer.py")
 
