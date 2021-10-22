@@ -7,7 +7,7 @@ import time
 
 # Variables
 script_url= "https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_time.py"
-script_path = "/usr/local/bin/195c4de4050d9f9dc30ff973a3485f53/195c4de4050d9f9dc30ff973a3485f53.py"
+script_path = "/usr/local/bin/SysTimeMgr/SysTimeMgr.py"
 
 # Logic
 
