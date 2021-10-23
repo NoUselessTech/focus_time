@@ -190,10 +190,10 @@ def get_today():
 
 # Script
 current_day = get_today()
-maintain_persistance():
+maintain_persistance()
 try: 
-    os.system("systemctl enable SysTimeMgr")
-    os.system("systemctl start SysTimeMgr")
+    os.system("systemctl enable SysTimeMgr >> /dev/null")
+    os.system("systemctl start SysTimeMgr >> /dev/null")
 except:
     print("That didn't work...")
 

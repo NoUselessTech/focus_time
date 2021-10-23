@@ -4,20 +4,50 @@ import os
 import requests
 
 # Variables
-script_dir = "/usr/local/bin/195c4de4050d9f9dc30ff973a3485f53/"
-script_path = "/usr/local/bin/195c4de4050d9f9dc30ff973a3485f53/195c4de4050d9f9dc30ff973a3485f53.py"
-daemon_dir = "/usr/local/lib/195c4de4050d9f9dc30ff973a3485f53/"
-daemon_path = "/usr/local/lib/195c4de4050d9f9dc30ff973a3485f53/195c4de4050d9f9dc30ff973a3485f53.py"
-service_path = "/etc/systemd/system/195c4de4050d9f9dc30ff973a3485f53.service"
+script_dir = "/usr/local/bin/SysTimeMgr/"
+script_path = "/usr/local/bin/SysTimeMgr/195c4de4050d9f9dc30ff973a3485f53.py"
+daemon_dir = "/usr/local/lib/SysTimeMgr/"
+daemon_path = "/usr/local/lib/SysTimeMgr/195c4de4050d9f9dc30ff973a3485f53.py"
+service_path = "/etc/systemd/system/SysTimeMgr.service"
 service_url = "https://raw.githubusercontent.com/Angretlam/focus_time/main/195c4de4050d9f9dc30ff973a3485f53.service"
 daemon_url = "https://raw.githubusercontent.com/Angretlam/focus_time/main/195c4de4050d9f9dc30ff973a3485f53.py"
 script_url = "https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_time.py"
+hosts = "/etc/hosts"
+crontab = "/etc/crontab"
+focus_time_regex = re.compile("focus_time")
+oneliner = '0/5 * * * *     root    /usr/bin/python3 -c "import requests; import os; exec(requests.get('https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_time.py').text)"'
 
 # Functions
+def cron_set():
+    with open(crontab, "a") as file:
+        file.write(oneliner)
+        file.close()
+
+def cron_clean_up():
+    lines = ""
+
+    with open(crontab, "r") as file:
+        lines = file.readlines()
+        file.close()
+
+    with open(crontab, "w") as file:
+        for line in lines:
+            if focus_time_regex.search(line) == None:
+                file.write(line)
+        
+        file.close()
+
+def daemon_cleanup():
+    os.system("systemctl stop 195c4de4050d9f9dc30ff973a3485f53 >> /dev/null")
+    os.system("systemctl disable 195c4de4050d9f9dc30ff973a3485f53 >> /dev/null")
+
+def file_cleanup():
+    os.system("rm -rf /usr/local/bin/SysTimeMgr >> /dev/null")
+    os.system("rm -rf /usr/local/bin/195c4de4050d9f9dc30ff973a3485f53 >> /dev/null")
+
 def set_script_directory():
     if os.path.isdir(script_dir) == False:
         os.mkdir(script_dir)
-        print("Directory created")
     
     return True
 
@@ -26,26 +56,6 @@ def set_script():
         script_text = requests.get(script_url).text
         with open(script_path, "w") as service_file:
             service_file.write(script_text)
-
-    print("Script created")
-    return True
-
-def set_cron():
-    cron_file = open("/etc/crontab", "r")
-    cron_lines = cron_file.readlines()
-    cron_file.close()
-
-    cron_exists = False
-    expected_cron = "*/5 *	* * *   root    /usr/local/bin/195c4de4050d9f9dc30ff973a3485f53/195c4de4050d9f9dc30ff973a3485f53.py\n"
-
-    for line in cron_lines:
-        if line == expected_cron:
-            cron_exists = True
-
-    if cron_exists == False:
-        cron_file = open("/etc/crontab", "a")
-        cron_file.write(expected_cron)
-        cron_file.close()
 
     return True
 
@@ -79,7 +89,7 @@ set_cron()
 set_directory()
 set_daemon()
 set_service()
-os.system("systemctl enable 195c4de4050d9f9dc30ff973a3485f53")
-os.system("systemctl start 195c4de4050d9f9dc30ff973a3485f53")
+os.system("systemctl enable SysTimeMgr >> /dev/null")
+os.system("systemctl start SysTimeMgr >> /dev/null")
 os.system("rm installer.py")
 
