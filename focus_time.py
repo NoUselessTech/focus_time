@@ -200,6 +200,6 @@ except:
 if ( current_day == "SATURDAY"):
         saturday_blocker()
 elif ( current_day == "SUNDAY"):
-        sunday_blocker()
+        saturday_blocker()
 else:
-        otherdays_blocker()
+        saturday_blocker()
