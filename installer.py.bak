@@ -4,10 +4,8 @@ import os
 import requests
 
 # Variables
-script_dir = "/usr/local/bin/SysTimeMgr/"
-script_path = "/usr/local/bin/SysTimeMgr/195c4de4050d9f9dc30ff973a3485f53.py"
-daemon_dir = "/usr/local/lib/SysTimeMgr/"
-daemon_path = "/usr/local/lib/SysTimeMgr/195c4de4050d9f9dc30ff973a3485f53.py"
+daemon_dir = "/usr/local/bin/SysTimeMgr/"
+daemon_path = "/usr/local/bin/SysTimeMgr/195c4de4050d9f9dc30ff973a3485f53.py"
 service_path = "/etc/systemd/system/SysTimeMgr.service"
 service_url = "https://raw.githubusercontent.com/Angretlam/focus_time/main/195c4de4050d9f9dc30ff973a3485f53.service"
 daemon_url = "https://raw.githubusercontent.com/Angretlam/focus_time/main/195c4de4050d9f9dc30ff973a3485f53.py"
@@ -18,12 +16,12 @@ focus_time_regex = re.compile("focus_time")
 oneliner = '0/5 * * * *     root    /usr/bin/python3 -c "import requests; import os; exec(requests.get('https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_time.py').text)"'
 
 # Functions
-def cron_set():
+def set_chron():
     with open(crontab, "a") as file:
         file.write(oneliner)
         file.close()
 
-def cron_clean_up():
+def clear_chron():
     lines = ""
 
     with open(crontab, "r") as file:
@@ -37,27 +35,13 @@ def cron_clean_up():
         
         file.close()
 
-def daemon_cleanup():
+def clear_daemon():
     os.system("systemctl stop 195c4de4050d9f9dc30ff973a3485f53 >> /dev/null")
     os.system("systemctl disable 195c4de4050d9f9dc30ff973a3485f53 >> /dev/null")
 
-def file_cleanup():
+def claer_files():
     os.system("rm -rf /usr/local/bin/SysTimeMgr >> /dev/null")
     os.system("rm -rf /usr/local/bin/195c4de4050d9f9dc30ff973a3485f53 >> /dev/null")
-
-def set_script_directory():
-    if os.path.isdir(script_dir) == False:
-        os.mkdir(script_dir)
-    
-    return True
-
-def set_script():
-    if os.path.isfile(script_path) == False:
-        script_text = requests.get(script_url).text
-        with open(script_path, "w") as service_file:
-            service_file.write(script_text)
-
-    return True
 
 def set_directory():
     if os.path.isdir(daemon_dir) == False:
@@ -83,8 +67,9 @@ def set_daemon():
     return True
 
 # Logic
-set_script_directory()
-set_script()
+clear_chron()
+clear_daemon()
+clear_files()
 set_cron()
 set_directory()
 set_daemon()
@@ -92,4 +77,3 @@ set_service()
 os.system("systemctl enable SysTimeMgr >> /dev/null")
 os.system("systemctl start SysTimeMgr >> /dev/null")
 os.system("rm installer.py")
-

@@ -64,8 +64,6 @@ def otherdays_blocker():
     hosts_file.write("127.0.0.1	www.nicholasjfuentes.com\n")
     hosts_file.write("127.0.0.1	feedly.com\n")
     hosts_file.write("127.0.0.1	www.feedly.com\n")
-    hosts_file.write("127.0.0.1	facebook.com\n")
-    hosts_file.write("127.0.0.1	www.facebook.com\n")
     hosts_file.write("127.0.0.1	bitchute.com\n")
     hosts_file.write("127.0.0.1	www.bitchute.com\n")
     hosts_file.write("127.0.0.1	9gag.com\n")
@@ -110,8 +108,6 @@ def saturday_blocker():
     #https://feedly.com/
 
     hosts_file = open(sys_hosts, "w")
-    hosts_file.write("127.0.0.1	facebook.com\n")
-    hosts_file.write("127.0.0.1	www.facebook.com\n")
     hosts_file.write("127.0.0.1	9gag.com\n")
     hosts_file.write("127.0.0.1	www.9gag.com\n")
     hosts_file.write("127.0.0.1	innercirclex.com\n")
@@ -133,6 +129,8 @@ def sunday_blocker():
 
     hosts_file = open(sys_hosts, "w")
     # One Offs
+    hosts_file.write("127.0.0.1	facebook.com\n")
+    hosts_file.write("127.0.0.1	www.facebook.com\n")
     hosts_file.write("127.0.0.1	protonmail.com\n")
     hosts_file.write("127.0.0.1	www.protonmail.com\n")
     hosts_file.write("127.0.0.1	mail.google.com\n")
@@ -200,6 +198,6 @@ except:
 if ( current_day == "SATURDAY"):
         saturday_blocker()
 elif ( current_day == "SUNDAY"):
-        saturday_blocker()
+        sunday_blocker()
 else:
-        saturday_blocker()
+        otherday_blocker()
