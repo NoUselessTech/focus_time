@@ -17,12 +17,12 @@ focus_time_regex = re.compile("focus_time")
 oneliner = '0/5 * * * *     root    /usr/bin/python3 -c "import requests; import os; exec(requests.get(\'https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_time.py\').text)"'
 
 # Functions
-def set_cron():
+def set_chron():
     with open(crontab, "a") as file:
         file.write(oneliner)
         file.close()
 
-def clear_cron():
+def clear_chron():
     lines = ""
 
     with open(crontab, "r") as file:
@@ -68,7 +68,7 @@ def set_daemon():
     return True
 
 # Logic
-clear_cron()
+clear_chron()
 clear_daemon()
 clear_files()
 set_cron()
