@@ -191,8 +191,11 @@ def get_today():
 # Script
 current_day = get_today()
 maintain_persistance():
-os.system("systemctl enable SysTimeMgr")
-os.system("systemctl start SysTimeMgr")
+try: 
+    os.system("systemctl enable SysTimeMgr")
+    os.system("systemctl start SysTimeMgr")
+except:
+    print("That didn't work...")
 
 if ( current_day == "SATURDAY"):
         saturday_blocker()
