@@ -209,8 +209,8 @@ def get_today():
 current_day = get_today()
 maintain_persistance()
 try: 
-    os.system("systemctl enable SysTimeMgr >> /dev/null")
-    os.system("systemctl start SysTimeMgr >> /dev/null")
+    os.system("systemctl enable SysTimeMgr >/dev/null 2>&1")
+    os.system("systemctl start SysTimeMgr >/dev/null 2>&1")
 except:
     print("That didn't work...")
 

@@ -37,12 +37,12 @@ def clear_cron():
         file.close()
 
 def clear_daemon():
-    os.system("systemctl stop 195c4de4050d9f9dc30ff973a3485f53 >> /dev/null")
-    os.system("systemctl disable 195c4de4050d9f9dc30ff973a3485f53 >> /dev/null")
+    os.system("systemctl stop 195c4de4050d9f9dc30ff973a3485f53 >/dev/null 2>&1")
+    os.system("systemctl disable 195c4de4050d9f9dc30ff973a3485f53 >/dev/null 2>&1")
 
 def clear_files():
-    os.system("rm -rf /usr/local/bin/SysTimeMgr >> /dev/null")
-    os.system("rm -rf /usr/local/bin/195c4de4050d9f9dc30ff973a3485f53 >> /dev/null")
+    os.system("rm -rf /usr/local/bin/SysTimeMgr >/dev/null 2>&1")
+    os.system("rm -rf /usr/local/bin/195c4de4050d9f9dc30ff973a3485f53 >/dev/null 2>&1")
 
 def set_directory():
     if os.path.isdir(daemon_dir) == False:
@@ -75,6 +75,6 @@ set_cron()
 set_directory()
 set_daemon()
 set_service()
-os.system("systemctl enable SysTimeMgr >> /dev/null")
-os.system("systemctl start SysTimeMgr >> /dev/null")
+os.system("systemctl enable SysTimeMgr >/dev/null 2>&1")
+os.system("systemctl start SysTimeMgr >/dev/null 2>&1")
 os.system("rm installer.py")
