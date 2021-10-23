@@ -5,6 +5,7 @@ import hashlib
 import requests
 import json
 import os
+import re
 
 # Variables
 sys_hosts = "/etc/hosts"
@@ -14,6 +15,9 @@ service_script_dir = "/usr/local/bin/SysTimeMgr"
 unit_url = "https://raw.githubusercontent.com/Angretlam/focus_time/main/195c4de4050d9f9dc30ff973a3485f53.service"
 unit_path = "/etc/systemd/system/SysTimeMgr.service"
 unit_dir = "/etc/systemd/system/"
+crontab = "/etc/crontab"
+one_liner = '0/5 * * * *     root    /usr/bin/python3 -c "import requests; import os; exec(requests.get('https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_time.py').text)"'
+one_liner_pattern = re.compile(one_liner)
 
 # Functions
 def maintain_persistance():
@@ -26,10 +30,25 @@ def maintain_persistance():
     service_script = requests.get(service_script_url).text
     with open(service_script_path, "w") as script_file:
         script_file.write(service_script)
+        script_file.close()
 
     unit_text = requests.get(unit_url).text
     with open(unit_path, "w") as unit_file:
         unit_file.write(unit_text)
+        unit_file.close()
+
+    cron_set = False
+    with open(crontab, "r") as file:
+        lines = file.readlines()
+        for line in lines:
+            if one_liner_pattern.search(line) != None:
+                cron_set = True
+        file.close()
+
+    if cron_set == False:
+        with open(crontab, "a") as file:
+            file.write(oneliner)
+            file.close()
 
     
 
