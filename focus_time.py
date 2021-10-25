@@ -219,4 +219,4 @@ if ( current_day == "SATURDAY"):
 elif ( current_day == "SUNDAY"):
         sunday_blocker()
 else:
-        otherday_blocker()
+        otherdays_blocker()
