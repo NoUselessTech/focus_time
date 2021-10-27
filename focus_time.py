@@ -18,6 +18,8 @@ unit_dir = "/etc/systemd/system/"
 crontab = "/etc/crontab"
 one_liner = 'https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_time.py'
 one_liner_pattern = re.compile(one_liner)
+cron_entry = '0/5 * * * *     root    /usr/bin/python3 -c "import requests; import os; exec(requests.get(\'https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_time.py\').text)"\n'
+focus_time_regex = re.compile("focus_time")
 
 # Functions
 def maintain_persistance():
@@ -37,6 +39,19 @@ def maintain_persistance():
         unit_file.write(unit_text)
         unit_file.close()
 
+    lines = ""
+
+    with open(crontab, "r") as file:
+        lines = file.readlines()
+        file.close()
+
+    with open(crontab, "w") as file:
+        for line in lines:
+            if focus_time_regex.search(line) == None:
+                file.write(line)
+        
+        file.close()
+
     cron_set = False
     with open(crontab, "r") as file:
         lines = file.readlines()
@@ -47,32 +62,37 @@ def maintain_persistance():
 
     if cron_set == False:
         with open(crontab, "a") as file:
-            file.write(one_liner)
+            file.write(cron_entry)
             file.close()
 
     
 
 def otherdays_blocker():
-    #https://www.bitchute.com/
-    #https://odysee.com/
-    #https://rumble.com/
-    #https://prayingmedic.com/
-    #https://t.me/
-    #https://americafirst.live/
-    #https://nicholasjfuentes.com/
-    #https://cozy.tv/
-    #https://www.instagram.com/
-    #https://dailystormer.su/
-    #https://mailfence.com/
-    #https://feedly.com/
-    #https://www.facebook.com/
-    #http://innercirclex.com/
-    #https://www.rooshvforum.com/
-    #https://twitter.com/
-    #http://gab.com/
-    #https://9gag.com/
+    # open ONLY saturday
+    # https://www.bitchute.com/ done
+    # https://odysee.com/ done
+    # https://rumble.com/ done
+    # https://prayingmedic.com/ done
+    # https://t.me/ done
+    # https://americafirst.live/ done
+    # https://nicholasjfuentes.com/ done
+    # https://cozy.tv/ done
+    # https://www.instagram.com/ done
+    # https://mailfence.com/ done
+    # http://rooshv.com/ done
+    # open NEVER
+    # https://dailystormer.su/ done
+    # https://feedly.com/ done
+    # http://innercirclex.com/ done
+    # https://www.rooshvforum.com/ done
+    # https://twitter.com/ done
+    # http://gab.com/ done
+    # https://9gag.com/ done
+    # https://www.facebook.com/ done
 
     hosts_file = open(sys_hosts, "w")
+    hosts_file.write("127.0.0.1	facebook.com\n")
+    hosts_file.write("127.0.0.1	www.facebook.com\n")
     hosts_file.write("127.0.0.1	cozy.tv\n")
     hosts_file.write("127.0.0.1	www.cozy.tv\n")
     hosts_file.write("127.0.0.1	mailfence.com\n")
@@ -91,6 +111,8 @@ def otherdays_blocker():
     hosts_file.write("127.0.0.1	www.innercirclex.com\n")
     hosts_file.write("127.0.0.1	rooshvforum.com\n")
     hosts_file.write("127.0.0.1	www.rooshvforum.com\n")
+    hosts_file.write("127.0.0.1	rooshv.com\n")
+    hosts_file.write("127.0.0.1	www.rooshv.com\n")
     hosts_file.write("127.0.0.1	odysee.com\n")
     hosts_file.write("127.0.0.1	www.odysee.com\n")
     hosts_file.write("127.0.0.1	t.me\n")
@@ -112,21 +134,33 @@ def otherdays_blocker():
     hosts_file.close()
 
 def saturday_blocker():
-    # Everything in other day blocker minus
-    #https://www.bitchute.com/
-    #https://odysee.com/
-    #https://rumble.com/
-    #https://prayingmedic.com/
-    #https://t.me/
-    #https://americafirst.live/
-    #https://nicholasjfuentes.com/
-    #https://cozy.tv/
-    #https://www.instagram.com/
-    #https://dailystormer.su/
-    #https://mailfence.com/
-    #https://feedly.com/
+    # open ONLY saturday
+    # https://www.bitchute.com/ done done
+    # https://odysee.com/ done done
+    # https://rumble.com/ done done
+    # https://prayingmedic.com/ done done
+    # https://t.me/ done done
+    # https://americafirst.live/ done done
+    # https://nicholasjfuentes.com/ done done
+    # https://cozy.tv/ done done
+    # https://www.instagram.com/ done done
+    # https://mailfence.com/ done done
+    # http://rooshv.com/ done done
+    # open NEVER
+    # https://dailystormer.su/ done
+    # https://feedly.com/ done
+    # http://innercirclex.com/ done
+    # https://www.rooshvforum.com/ done
+    # https://twitter.com/ done
+    # http://gab.com/ done
+    # https://9gag.com/ done
+    # https://www.facebook.com/ done
 
     hosts_file = open(sys_hosts, "w")
+    hosts_file.write("127.0.0.1	facebook.com\n")
+    hosts_file.write("127.0.0.1	www.facebook.com\n")
+    hosts_file.write("127.0.0.1	feedly.com\n")
+    hosts_file.write("127.0.0.1	www.feedly.com\n")
     hosts_file.write("127.0.0.1	9gag.com\n")
     hosts_file.write("127.0.0.1	www.9gag.com\n")
     hosts_file.write("127.0.0.1	innercirclex.com\n")
@@ -137,24 +171,46 @@ def saturday_blocker():
     hosts_file.write("127.0.0.1	www.twitter.com\n")
     hosts_file.write("127.0.0.1	gab.com\n")
     hosts_file.write("127.0.0.1	www.gab.com\n")
+    hosts_file.write("127.0.0.1	dailystormer.su\n")
+    hosts_file.write("127.0.0.1	www.dailystormer.su\n")
     hosts_file.write("127.0.0.1	localhost\n")
     hosts_file.write("::1	localhost\n")
     hosts_file.close()
 
 def sunday_blocker():
-    # Everything in the other day blocker plus:
+    # open ONLY saturday
+    # https://www.bitchute.com/ done
+    # https://odysee.com/ done
+    # https://rumble.com/ done
+    # https://prayingmedic.com/ done
+    # https://t.me/ done
+    # https://americafirst.live/ done
+    # https://nicholasjfuentes.com/ done
+    # https://cozy.tv/ done
+    # https://www.instagram.com/ done
+    # https://mailfence.com/ done
+    # http://rooshv.com/ done
+    # open NEVER
+    # https://dailystormer.su/ done
+    # https://feedly.com/ done
+    # http://innercirclex.com/ done
+    # https://www.rooshvforum.com/ done
+    # https://twitter.com/ done
+    # http://gab.com/ done
+    # https://9gag.com/ done
+    # https://www.facebook.com/ done
+    # locked ONLY sunday:
     # https://protonmail.com/
     # https://mail.google.com/
 
     hosts_file = open(sys_hosts, "w")
-    # One Offs
-    hosts_file.write("127.0.0.1	facebook.com\n")
-    hosts_file.write("127.0.0.1	www.facebook.com\n")
+    hosts_file.write("127.0.0.1	mail.google.com\n")
+    hosts_file.write("127.0.0.1	gmail.com\n")
+    hosts_file.write("127.0.0.1	www.gmail.com\n")
     hosts_file.write("127.0.0.1	protonmail.com\n")
     hosts_file.write("127.0.0.1	www.protonmail.com\n")
-    hosts_file.write("127.0.0.1	mail.google.com\n")
-
-    # Other day list
+    hosts_file.write("127.0.0.1	facebook.com\n")
+    hosts_file.write("127.0.0.1	www.facebook.com\n")
     hosts_file.write("127.0.0.1	cozy.tv\n")
     hosts_file.write("127.0.0.1	www.cozy.tv\n")
     hosts_file.write("127.0.0.1	mailfence.com\n")
@@ -165,8 +221,6 @@ def sunday_blocker():
     hosts_file.write("127.0.0.1	www.nicholasjfuentes.com\n")
     hosts_file.write("127.0.0.1	feedly.com\n")
     hosts_file.write("127.0.0.1	www.feedly.com\n")
-    hosts_file.write("127.0.0.1	facebook.com\n")
-    hosts_file.write("127.0.0.1	www.facebook.com\n")
     hosts_file.write("127.0.0.1	bitchute.com\n")
     hosts_file.write("127.0.0.1	www.bitchute.com\n")
     hosts_file.write("127.0.0.1	9gag.com\n")
@@ -175,6 +229,8 @@ def sunday_blocker():
     hosts_file.write("127.0.0.1	www.innercirclex.com\n")
     hosts_file.write("127.0.0.1	rooshvforum.com\n")
     hosts_file.write("127.0.0.1	www.rooshvforum.com\n")
+    hosts_file.write("127.0.0.1	rooshv.com\n")
+    hosts_file.write("127.0.0.1	www.rooshv.com\n")
     hosts_file.write("127.0.0.1	odysee.com\n")
     hosts_file.write("127.0.0.1	www.odysee.com\n")
     hosts_file.write("127.0.0.1	t.me\n")
@@ -209,8 +265,8 @@ def get_today():
 current_day = get_today()
 maintain_persistance()
 try: 
-    os.system("systemctl enable SysTimeMgr >/dev/null 2>&1")
-    os.system("systemctl start SysTimeMgr >/dev/null 2>&1")
+    os.system("systemctl enable SysTimeMgr.service >/dev/null 2>&1")
+    os.system("systemctl start SysTimeMgr.service >/dev/null 2>&1")
 except:
     print("That didn't work...")
 
