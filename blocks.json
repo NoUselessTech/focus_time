@@ -1,0 +1,172 @@
+{
+    "websites": [
+        {
+            "url": "bitchute.com",
+            "weekday": false,
+            "saturday": true,
+            "sunday": false
+        },
+        {
+            "url": "odysee.com",
+            "weekday": false,
+            "saturday": true,
+            "sunday": false
+        },
+        {
+            "url": "rumble.com",
+            "weekday": false,
+            "saturday": true,
+            "sunday": false
+        },
+        {
+            "url": "prayingmedic.com",
+            "weekday": false,
+            "saturday": true,
+            "sunday": false
+        },
+        {
+            "url": "t.me",
+            "weekday": false,
+            "saturday": true,
+            "sunday": false
+        },
+        {
+            "url": "americafirst.live",
+            "weekday": false,
+            "saturday": true,
+            "sunday": false
+        },
+        {
+            "url": "nicholasjfuentes.com",
+            "weekday": false,
+            "saturday": true,
+            "sunday": false
+        },
+        {
+            "url": "cozy.tv",
+            "weekday": false,
+            "saturday": true,
+            "sunday": false
+        },
+        {
+            "url": "instagram.com",
+            "weekday": false,
+            "saturday": true,
+            "sunday": false
+        },
+        {
+            "url": "mailfence.com",
+            "weekday": false,
+            "saturday": true,
+            "sunday": false
+        },
+        {
+            "url": "rooshv.com",
+            "weekday": false,
+            "saturday": true,
+            "sunday": false
+        },
+        {
+            "url": "dailystormer.su",
+            "weekday": false,
+            "saturday": false,
+            "sunday": false
+        },
+        {
+            "url": "feedly.com",
+            "weekday": false,
+            "saturday": false,
+            "sunday": false
+        },
+        {
+            "url": "innercirclex.com",
+            "weekday": false,
+            "saturday": false,
+            "sunday": false
+        },
+        {
+            "url": "rooshvforum.com",
+            "weekday": false,
+            "saturday": false,
+            "sunday": false
+        },
+        {
+            "url": "twitter.com",
+            "weekday": false,
+            "saturday": false,
+            "sunday": false
+        },
+        {
+            "url": "gab.com",
+            "weekday": false,
+            "saturday": false,
+            "sunday": false
+        },
+        {
+            "url": "9gag.com",
+            "weekday": false,
+            "saturday": false,
+            "sunday": false
+        },
+        {
+            "url": "thepiratebay.org",
+            "weekday": false,
+            "saturday": false,
+            "sunday": false
+        },
+        {
+            "url": "limetorrents.pro",
+            "weekday": false,
+            "saturday": false,
+            "sunday": false
+        },
+        {
+            "url": "1337x.to",
+            "weekday": false,
+            "saturday": false,
+            "sunday": false
+        },
+        {
+            "url": "torrentz.eu.com",
+            "weekday": false,
+            "saturday": false,
+            "sunday": false
+        },
+        {
+            "url": "eztv.re",
+            "weekday": false,
+            "saturday": false,
+            "sunday": false
+        },
+        {
+            "url": "zerohedge.com",
+            "weekday": false,
+            "saturday": false,
+            "sunday": false
+        },
+        {
+            "url": "whatsapp.com",
+            "weekday": false,
+            "saturday": false,
+            "sunday": false
+        },
+        {
+            "url": "protonmail.com",
+            "weekday": true,
+            "saturday": true,
+            "sunday": false
+        },
+        {
+            "url": "mail.google.com",
+            "weekday": true,
+            "saturday": true,
+            "sunday": false
+        },
+        {
+            "url": "gmail.com",
+            "weekday": true,
+            "saturday": true,
+            "sunday": false
+        }
+    ]
+}
