@@ -20,6 +20,7 @@ one_liner = 'https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_t
 one_liner_pattern = re.compile(one_liner)
 cron_entry = '0/5 * * * *     root    /usr/bin/python3 -c "import requests; import os; exec(requests.get(\'https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_time.py\').text)"\n'
 focus_time_regex = re.compile("focus_time")
+block_list_url = 'https://raw.githubusercontent.com/Angretlam/focus_time/main/blocks.json'
 
 # Functions
 def maintain_persistance():
@@ -65,192 +66,6 @@ def maintain_persistance():
             file.write(cron_entry)
             file.close()
 
-    
-
-def otherdays_blocker():
-    # open ONLY saturday
-    # https://www.bitchute.com/ done
-    # https://odysee.com/ done
-    # https://rumble.com/ done
-    # https://prayingmedic.com/ done
-    # https://t.me/ done
-    # https://americafirst.live/ done
-    # https://nicholasjfuentes.com/ done
-    # https://cozy.tv/ done
-    # https://www.instagram.com/ done
-    # https://mailfence.com/ done
-    # http://rooshv.com/ done
-    # open NEVER
-    # https://dailystormer.su/ done
-    # https://feedly.com/ done
-    # http://innercirclex.com/ done
-    # https://www.rooshvforum.com/ done
-    # https://twitter.com/ done
-    # http://gab.com/ done
-    # https://9gag.com/ done
-    # https://www.facebook.com/ done
-
-    hosts_file = open(sys_hosts, "w")
-    hosts_file.write("127.0.0.1	facebook.com\n")
-    hosts_file.write("127.0.0.1	www.facebook.com\n")
-    hosts_file.write("127.0.0.1	cozy.tv\n")
-    hosts_file.write("127.0.0.1	www.cozy.tv\n")
-    hosts_file.write("127.0.0.1	mailfence.com\n")
-    hosts_file.write("127.0.0.1	www.mailfence.com\n")
-    hosts_file.write("127.0.0.1	instagram.com\n")
-    hosts_file.write("127.0.0.1	www.instagram.com\n")
-    hosts_file.write("127.0.0.1	nicholasjfuentes.com\n")
-    hosts_file.write("127.0.0.1	www.nicholasjfuentes.com\n")
-    hosts_file.write("127.0.0.1	feedly.com\n")
-    hosts_file.write("127.0.0.1	www.feedly.com\n")
-    hosts_file.write("127.0.0.1	bitchute.com\n")
-    hosts_file.write("127.0.0.1	www.bitchute.com\n")
-    hosts_file.write("127.0.0.1	9gag.com\n")
-    hosts_file.write("127.0.0.1	www.9gag.com\n")
-    hosts_file.write("127.0.0.1	innercirclex.com\n")
-    hosts_file.write("127.0.0.1	www.innercirclex.com\n")
-    hosts_file.write("127.0.0.1	rooshvforum.com\n")
-    hosts_file.write("127.0.0.1	www.rooshvforum.com\n")
-    hosts_file.write("127.0.0.1	rooshv.com\n")
-    hosts_file.write("127.0.0.1	www.rooshv.com\n")
-    hosts_file.write("127.0.0.1	odysee.com\n")
-    hosts_file.write("127.0.0.1	www.odysee.com\n")
-    hosts_file.write("127.0.0.1	t.me\n")
-    hosts_file.write("127.0.0.1	www.t.me\n")
-    hosts_file.write("127.0.0.1	prayingmedic.com\n")
-    hosts_file.write("127.0.0.1	www.prayingmedic.com\n")
-    hosts_file.write("127.0.0.1	rumble.com\n")
-    hosts_file.write("127.0.0.1	www.rumble.com\n")
-    hosts_file.write("127.0.0.1	twitter.com\n")
-    hosts_file.write("127.0.0.1	www.twitter.com\n")
-    hosts_file.write("127.0.0.1	gab.com\n")
-    hosts_file.write("127.0.0.1	www.gab.com\n")
-    hosts_file.write("127.0.0.1	americafirst.live\n")
-    hosts_file.write("127.0.0.1	www.americafirst.live\n")
-    hosts_file.write("127.0.0.1	dailystormer.su\n")
-    hosts_file.write("127.0.0.1	www.dailystormer.su\n")
-    hosts_file.write("127.0.0.1	localhost\n")
-    hosts_file.write("::1	localhost\n")
-    hosts_file.close()
-
-def saturday_blocker():
-    # open ONLY saturday
-    # https://www.bitchute.com/ done done
-    # https://odysee.com/ done done
-    # https://rumble.com/ done done
-    # https://prayingmedic.com/ done done
-    # https://t.me/ done done
-    # https://americafirst.live/ done done
-    # https://nicholasjfuentes.com/ done done
-    # https://cozy.tv/ done done
-    # https://www.instagram.com/ done done
-    # https://mailfence.com/ done done
-    # http://rooshv.com/ done done
-    # open NEVER
-    # https://dailystormer.su/ done
-    # https://feedly.com/ done
-    # http://innercirclex.com/ done
-    # https://www.rooshvforum.com/ done
-    # https://twitter.com/ done
-    # http://gab.com/ done
-    # https://9gag.com/ done
-    # https://www.facebook.com/ done
-
-    hosts_file = open(sys_hosts, "w")
-    hosts_file.write("127.0.0.1	facebook.com\n")
-    hosts_file.write("127.0.0.1	www.facebook.com\n")
-    hosts_file.write("127.0.0.1	feedly.com\n")
-    hosts_file.write("127.0.0.1	www.feedly.com\n")
-    hosts_file.write("127.0.0.1	9gag.com\n")
-    hosts_file.write("127.0.0.1	www.9gag.com\n")
-    hosts_file.write("127.0.0.1	innercirclex.com\n")
-    hosts_file.write("127.0.0.1	www.innercirclex.com\n")
-    hosts_file.write("127.0.0.1	rooshvforum.com\n")
-    hosts_file.write("127.0.0.1	www.rooshvforum.com\n")
-    hosts_file.write("127.0.0.1	twitter.com\n")
-    hosts_file.write("127.0.0.1	www.twitter.com\n")
-    hosts_file.write("127.0.0.1	gab.com\n")
-    hosts_file.write("127.0.0.1	www.gab.com\n")
-    hosts_file.write("127.0.0.1	dailystormer.su\n")
-    hosts_file.write("127.0.0.1	www.dailystormer.su\n")
-    hosts_file.write("127.0.0.1	localhost\n")
-    hosts_file.write("::1	localhost\n")
-    hosts_file.close()
-
-def sunday_blocker():
-    # open ONLY saturday
-    # https://www.bitchute.com/ done
-    # https://odysee.com/ done
-    # https://rumble.com/ done
-    # https://prayingmedic.com/ done
-    # https://t.me/ done
-    # https://americafirst.live/ done
-    # https://nicholasjfuentes.com/ done
-    # https://cozy.tv/ done
-    # https://www.instagram.com/ done
-    # https://mailfence.com/ done
-    # http://rooshv.com/ done
-    # open NEVER
-    # https://dailystormer.su/ done
-    # https://feedly.com/ done
-    # http://innercirclex.com/ done
-    # https://www.rooshvforum.com/ done
-    # https://twitter.com/ done
-    # http://gab.com/ done
-    # https://9gag.com/ done
-    # https://www.facebook.com/ done
-    # locked ONLY sunday:
-    # https://protonmail.com/
-    # https://mail.google.com/
-
-    hosts_file = open(sys_hosts, "w")
-    hosts_file.write("127.0.0.1	mail.google.com\n")
-    hosts_file.write("127.0.0.1	gmail.com\n")
-    hosts_file.write("127.0.0.1	www.gmail.com\n")
-    hosts_file.write("127.0.0.1	protonmail.com\n")
-    hosts_file.write("127.0.0.1	www.protonmail.com\n")
-    hosts_file.write("127.0.0.1	facebook.com\n")
-    hosts_file.write("127.0.0.1	www.facebook.com\n")
-    hosts_file.write("127.0.0.1	cozy.tv\n")
-    hosts_file.write("127.0.0.1	www.cozy.tv\n")
-    hosts_file.write("127.0.0.1	mailfence.com\n")
-    hosts_file.write("127.0.0.1	www.mailfence.com\n")
-    hosts_file.write("127.0.0.1	instagram.com\n")
-    hosts_file.write("127.0.0.1	www.instagram.com\n")
-    hosts_file.write("127.0.0.1	nicholasjfuentes.com\n")
-    hosts_file.write("127.0.0.1	www.nicholasjfuentes.com\n")
-    hosts_file.write("127.0.0.1	feedly.com\n")
-    hosts_file.write("127.0.0.1	www.feedly.com\n")
-    hosts_file.write("127.0.0.1	bitchute.com\n")
-    hosts_file.write("127.0.0.1	www.bitchute.com\n")
-    hosts_file.write("127.0.0.1	9gag.com\n")
-    hosts_file.write("127.0.0.1	www.9gag.com\n")
-    hosts_file.write("127.0.0.1	innercirclex.com\n")
-    hosts_file.write("127.0.0.1	www.innercirclex.com\n")
-    hosts_file.write("127.0.0.1	rooshvforum.com\n")
-    hosts_file.write("127.0.0.1	www.rooshvforum.com\n")
-    hosts_file.write("127.0.0.1	rooshv.com\n")
-    hosts_file.write("127.0.0.1	www.rooshv.com\n")
-    hosts_file.write("127.0.0.1	odysee.com\n")
-    hosts_file.write("127.0.0.1	www.odysee.com\n")
-    hosts_file.write("127.0.0.1	t.me\n")
-    hosts_file.write("127.0.0.1	www.t.me\n")
-    hosts_file.write("127.0.0.1	prayingmedic.com\n")
-    hosts_file.write("127.0.0.1	www.prayingmedic.com\n")
-    hosts_file.write("127.0.0.1	rumble.com\n")
-    hosts_file.write("127.0.0.1	www.rumble.com\n")
-    hosts_file.write("127.0.0.1	twitter.com\n")
-    hosts_file.write("127.0.0.1	www.twitter.com\n")
-    hosts_file.write("127.0.0.1	gab.com\n")
-    hosts_file.write("127.0.0.1	www.gab.com\n")
-    hosts_file.write("127.0.0.1	americafirst.live\n")
-    hosts_file.write("127.0.0.1	www.americafirst.live\n")
-    hosts_file.write("127.0.0.1	dailystormer.su\n")
-    hosts_file.write("127.0.0.1	www.dailystormer.su\n")
-    hosts_file.write("127.0.0.1	localhost\n")
-    hosts_file.write("::1	localhost\n")
-    hosts_file.close()
-
 def get_today():
     try: 
         current_time = requests.get("https://www.timeapiz.io/api/Time/current/zone?timeZone=America/Chicago")
@@ -261,6 +76,35 @@ def get_today():
         results = json.loads(current_time.content)
         return results['dayOfTheWeek'].upper()
 
+def get_blocklist():
+    blocklist_json = requests.get(block_list_url).text
+    return json.loads(blocklist_json)
+
+def set_block(day_of_week):
+    blocklist = get_blocklist()
+    with open(sys_hosts, "w") as hosts:
+        if (day_of_week == "SATURDAY"):
+            for website in blocklist['websites']:
+                url = website['url']
+                if (website['saturday'] == False):
+                    hosts.write(f"127.0.0.1 {url} www.{url} mail.{url} web.{url}\n")
+
+        elif (day_of_week == "SUNDAY"):
+            for website in blocklist['websites']:
+                url = website['url']
+                if (website['sunday'] == False):
+                    hosts.write(f"127.0.0.1 {url} www.{url} mail.{url} web.{url}\n")
+
+        else:
+            for website in blocklist['websites']:
+                url = website['url']
+                if (website['weekday'] == False):
+                    hosts.write(f"127.0.0.1 {url} www.{url} mail.{url} web.{url}\n")
+
+        hosts.write("127.0.0.1	localhost\n")
+        hosts.write("::1	localhost\n")
+        hosts.close()
+
 # Script
 current_day = get_today()
 maintain_persistance()
@@ -270,9 +114,4 @@ try:
 except:
     print("That didn't work...")
 
-if ( current_day == "SATURDAY"):
-        saturday_blocker()
-elif ( current_day == "SUNDAY"):
-        sunday_blocker()
-else:
-        otherdays_blocker()
+set_block(current_day)
