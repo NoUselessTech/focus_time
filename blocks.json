@@ -87,7 +87,19 @@
         {
             "url": "rooshvforum.com",
             "weekday": false,
-            "saturday": false,
+            "saturday": true,
+            "sunday": false
+        },
+        {
+            "url": "wevovle.io",
+            "weekday": false,
+            "saturday": true,
+            "sunday": false
+        },        
+        {
+            "url": "tehvault.click",
+            "weekday": false,
+            "saturday": true,
             "sunday": false
         },
         {
