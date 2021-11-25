@@ -68,15 +68,15 @@
         },
         {
             "url": "dailystormer.su",
-            "weekday": false,
-            "saturday": false,
-            "sunday": false
+            "weekday": true,
+            "saturday": true,
+            "sunday": true
         },
         {
             "url": "feedly.com",
-            "weekday": false,
-            "saturday": false,
-            "sunday": false
+            "weekday": true,
+            "saturday": true,
+            "sunday": true
         },
         {
             "url": "innercirclex.com",
@@ -170,14 +170,14 @@
         },
         {
             "url": "mail.google.com",
-            "weekday": true,
-            "saturday": true,
+            "weekday": false,
+            "saturday": false,
             "sunday": false
         },
         {
             "url": "gmail.com",
-            "weekday": true,
-            "saturday": true,
+            "weekday": false,
+            "saturday": false,
             "sunday": false
         }
     ]
