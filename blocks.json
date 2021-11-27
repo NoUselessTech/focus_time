@@ -171,13 +171,13 @@
         {
             "url": "mail.google.com",
             "weekday": false,
-            "saturday": false,
+            "saturday": true,
             "sunday": false
         },
         {
             "url": "gmail.com",
             "weekday": false,
-            "saturday": false,
+            "saturday": true,
             "sunday": false
         }
     ]
