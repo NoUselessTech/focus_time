@@ -84,6 +84,7 @@ def set_block(time_info):
     blocklist = get_blocklist()
     with open(sys_hosts, "w") as hosts:
         for website in blocklist['websites']:
+            print(website['days'])
             print(website['days'][time_info[0]])
             url = website['url']
             if ( website['days'][time_info[0]][time_info[1]] == False ):
