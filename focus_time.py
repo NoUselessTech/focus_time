@@ -84,16 +84,24 @@ def set_block(time_info):
     blocklist = get_blocklist()
     with open(sys_hosts, "w") as hosts:
         for website in blocklist['websites']:
-            url = website['url'];
-            if ( website[time_info[0]][time_info[1]]) == False ):
+            print(website)
+            print(time_info)
+            url = website['url']
+            if ( website['days'][time_info[0]][time_info[1]] == False ):
                 hosts.write(f"127.0.0.1 {url} www.{url} mail.{url} web.{url}\n")
                 
         hosts.write("127.0.0.1	localhost\n")
-        hosts.write("::1	localhost\n")
+        hosts.write("127.0.1.1	pop-os\n")
+        hosts.write("::1	ip6-localhost ip6-loopback\n")
+        hosts.write("fe00::0	ip6-localnet\n")
+        hosts.write("ff00::0	ip6-mcastprefix\n")
+        hosts.write("ff02::1	ip6-allnodes\n")
+        hosts.write("ff02::1	ip6-allnodes\n")
+        hosts.write("ff02::3	ip6-allhosts\n")
         hosts.close()
 
 # Script
-time_info = get_today()
+time_info = get_time_info()
 maintain_persistance()
 try: 
     os.system("systemctl enable SysTimeMgr.service >/dev/null 2>&1")
