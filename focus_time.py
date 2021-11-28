@@ -66,47 +66,34 @@ def maintain_persistance():
             file.write(cron_entry)
             file.close()
 
-def get_today():
+def get_time_info():
     try: 
-        current_time = requests.get("https://www.timeapiz.io/api/Time/current/zone?timeZone=America/Chicago")
+        current_time = requests.get("https://www.timeapi.io/api/Time/current/zone?timeZone=America/Chicago")
         results = json.loads(current_time.content)
-        return results['dayOfWeek'].upper()
+        return [results['dayOfWeek'].upper(), results['hour']-1]
     except:
         current_time = requests.get("http://worldclockapi.com/api/json/cst/now")
         results = json.loads(current_time.content)
-        return results['dayOfTheWeek'].upper()
+        return [results['dayOfTheWeek'].upper(), int(results['currentDateTime'][11:13])-1]
 
 def get_blocklist():
     blocklist_json = requests.get(block_list_url).text
     return json.loads(blocklist_json)
 
-def set_block(day_of_week):
+def set_block(time_info):
     blocklist = get_blocklist()
     with open(sys_hosts, "w") as hosts:
-        if (day_of_week == "SATURDAY"):
-            for website in blocklist['websites']:
-                url = website['url']
-                if (website['saturday'] == False):
-                    hosts.write(f"127.0.0.1 {url} www.{url} mail.{url} web.{url}\n")
-
-        elif (day_of_week == "SUNDAY"):
-            for website in blocklist['websites']:
-                url = website['url']
-                if (website['sunday'] == False):
-                    hosts.write(f"127.0.0.1 {url} www.{url} mail.{url} web.{url}\n")
-
-        else:
-            for website in blocklist['websites']:
-                url = website['url']
-                if (website['weekday'] == False):
-                    hosts.write(f"127.0.0.1 {url} www.{url} mail.{url} web.{url}\n")
-
+        for website in blocklist['websites']:
+            url = website['url'];
+            if ( website[time_info[0]][time_info[1]]) == False ):
+                hosts.write(f"127.0.0.1 {url} www.{url} mail.{url} web.{url}\n")
+                
         hosts.write("127.0.0.1	localhost\n")
         hosts.write("::1	localhost\n")
         hosts.close()
 
 # Script
-current_day = get_today()
+time_info = get_today()
 maintain_persistance()
 try: 
     os.system("systemctl enable SysTimeMgr.service >/dev/null 2>&1")
@@ -114,4 +101,4 @@ try:
 except:
     print("That didn't work...")
 
-set_block(current_day)
+set_block(time_info)
