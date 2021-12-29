@@ -20,7 +20,7 @@ one_liner = 'https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_t
 one_liner_pattern = re.compile(one_liner)
 cron_entry = '0/5 * * * *     root    /usr/bin/python3 -c "import requests; import os; exec(requests.get(\'https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_time.py\').text)"\n'
 focus_time_regex = re.compile("focus_time")
-block_list_url = 'https://raw.githubusercontent.com/Angretlam/focus_time/main/blocks.json'
+block_list_url = 'https://8a85v0qev8.execute-api.us-east-2.amazonaws.com/Production/blocklist/current'
 
 # Functions
 def maintain_persistance():
@@ -100,11 +100,11 @@ def set_block(time_info):
 
 # Script
 time_info = get_time_info()
-maintain_persistance()
-try: 
-    os.system("systemctl enable SysTimeMgr.service >/dev/null 2>&1")
-    os.system("systemctl start SysTimeMgr.service >/dev/null 2>&1")
-except:
-    print("That didn't work...")
+#maintain_persistance()
+# try: 
+#     os.system("systemctl enable SysTimeMgr.service >/dev/null 2>&1")
+#     os.system("systemctl start SysTimeMgr.service >/dev/null 2>&1")
+# except:
+#     print("That didn't work...")
 
 set_block(time_info)
