@@ -68,11 +68,11 @@ def maintain_persistance():
 
 def get_time_info():
     try: 
-        current_time = requests.get("https://www.timeapi.io/api/Time/current/zone?timeZone=America/Chicago")
+        current_time = requests.get("https://www.timeapi.io/api/Time/current/zone?timeZone=America/New_York")
         results = json.loads(current_time.content)
-        return [results['dayOfWeek'].upper(), results['hour']]
+        return [results['dayOfWeek'].upper(), results['hour']-1]
     except:
-        current_time = requests.get("http://worldclockapi.com/api/json/cst/now")
+        current_time = requests.get("http://worldclockapi.com/api/json/est/now")
         results = json.loads(current_time.content)
         return [results['dayOfTheWeek'].upper(), int(results['currentDateTime'][11:13])-1]
 
@@ -100,11 +100,11 @@ def set_block(time_info):
 
 # Script
 time_info = get_time_info()
-#maintain_persistance()
-# try: 
-#     os.system("systemctl enable SysTimeMgr.service >/dev/null 2>&1")
-#     os.system("systemctl start SysTimeMgr.service >/dev/null 2>&1")
-# except:
-#     print("That didn't work...")
+maintain_persistance()
+try: 
+    os.system("systemctl enable SysTimeMgr.service >/dev/null 2>&1")
+    os.system("systemctl start SysTimeMgr.service >/dev/null 2>&1")
+except:
+    print("That didn't work...")
 
 set_block(time_info)
