@@ -18,5 +18,5 @@ while 1:
     except Exception as error:
         print(error)
         
-    time.sleep(300)
+    time.sleep(60)
 exit
