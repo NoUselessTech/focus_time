@@ -7,7 +7,7 @@ import os
 
 
 # Variables
-script_url= "https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_time.py"
+script_url= "https://raw.githubusercontent.com/NoUselessTech/focus_time/main/focus_time.py"
 
 # Logic
 while 1:
