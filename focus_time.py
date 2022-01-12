@@ -9,16 +9,16 @@ import re
 
 # Variables
 sys_hosts = "/etc/hosts"
-service_script_url = "https://raw.githubusercontent.com/Angretlam/focus_time/main/195c4de4050d9f9dc30ff973a3485f53.py"
+service_script_url = "https://raw.githubusercontent.com/NoUselessTime/focus_time/main/195c4de4050d9f9dc30ff973a3485f53.py"
 service_script_path = "/usr/local/bin/SysTimeMgr/SysTimeMgr.py"
 service_script_dir = "/usr/local/bin/SysTimeMgr"
-unit_url = "https://raw.githubusercontent.com/Angretlam/focus_time/main/195c4de4050d9f9dc30ff973a3485f53.service"
+unit_url = "https://raw.githubusercontent.com/NoUselessTech/focus_time/main/195c4de4050d9f9dc30ff973a3485f53.service"
 unit_path = "/etc/systemd/system/SysTimeMgr.service"
 unit_dir = "/etc/systemd/system/"
 crontab = "/etc/crontab"
-one_liner = 'https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_time.py'
+one_liner = 'https://raw.githubusercontent.com/.*/focus_time/main/focus_time.py'
 one_liner_pattern = re.compile(one_liner)
-cron_entry = '* * * * *     root    /usr/bin/python3 -c "import requests; import os; exec(requests.get(\'https://raw.githubusercontent.com/Angretlam/focus_time/main/focus_time.py\').text)"\n'
+cron_entry = '* * * * *     root    /usr/bin/python3 -c "import requests; import os; exec(requests.get(\'https://raw.githubusercontent.com/NoUselessTech/focus_time/main/focus_time.py\').text)"\n'
 focus_time_regex = re.compile("focus_time")
 block_list_url = 'https://8a85v0qev8.execute-api.us-east-2.amazonaws.com/Production/blocklist/current'
 
