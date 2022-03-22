@@ -70,11 +70,11 @@ def get_time_info():
     try: 
         current_time = requests.get("https://www.timeapi.io/api/Time/current/zone?timeZone=America/New_York")
         results = json.loads(current_time.content)
-        return [results['dayOfWeek'].upper(), results['hour']-1]
+        return [results['dayOfWeek'].upper(), results['hour']]
     except:
         current_time = requests.get("http://worldclockapi.com/api/json/est/now")
         results = json.loads(current_time.content)
-        return [results['dayOfTheWeek'].upper(), int(results['currentDateTime'][11:13])-1]
+        return [results['dayOfTheWeek'].upper(), int(results['currentDateTime'][11:13])]
 
 def get_blocklist():
     blocklist_json = requests.get(block_list_url).text
