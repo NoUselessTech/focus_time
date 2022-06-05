@@ -21,6 +21,9 @@ one_liner_pattern = re.compile(one_liner)
 cron_entry = '* * * * *     root    /usr/bin/python3 -c "import requests; import os; exec(requests.get(\'https://raw.githubusercontent.com/NoUselessTech/focus_time/main/focus_time.py\').text)"\n'
 focus_time_regex = re.compile("focus_time")
 block_list_url = 'https://8a85v0qev8.execute-api.us-east-2.amazonaws.com/Production/blocklist/current'
+xmind_sys_real = 'net.xmind.XMind'
+xmind_sys_fake = 'xmind'
+
 
 # Functions
 def maintain_persistance():
@@ -97,6 +100,13 @@ def set_block(time_info):
         hosts.write("ff02::1	ip6-allnodes\n")
         hosts.write("ff02::3	ip6-allhosts\n")
         hosts.close()
+
+def block_xmind():
+    os.system("mv /var/lib/flatpak/app/net.xmind.XMind /var/lib/flatpak/app/xmind >/dev/null 2>&1")
+
+def enable_xmind():
+    os.system("mv /var/lib/flatpak/app/xmind /var/lib/flatpak/app/net.xmind.XMind >/dev/null 2>&1")
+
 
 # Script
 time_info = get_time_info()
