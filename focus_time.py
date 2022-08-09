@@ -71,7 +71,7 @@ def maintain_persistance():
 
 def get_time_info():
     try: 
-        current_time = requests.get("https://www.timeapi.io/api/Time/current/zone?timeZone=Europe/Berlin")
+        current_time = requests.get("https://www.timeapi.io/api/Time/current/zone?timeZone=Etc/GMT-3")
         results = json.loads(current_time.content)
         return [results['dayOfWeek'].upper(), results['hour']]
     except:
