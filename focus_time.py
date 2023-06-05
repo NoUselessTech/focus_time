@@ -71,11 +71,11 @@ def maintain_persistance():
 
 def get_time_info():
     try: 
-        current_time = requests.get("https://www.timeapi.io/api/Time/current/zone?timeZone=America/Sao_Paulo")
+        current_time = requests.get("https://www.timeapi.io/api/Time/current/zone?timeZone=America/Denver")
         results = json.loads(current_time.content)
         return [results['dayOfWeek'].upper(), results['hour']]
     except:
-        current_time = requests.get("http://worldclockapi.com/api/json/cet/now")
+        current_time = requests.get("http://worldclockapi.com/api/json/mst/now")
         results = json.loads(current_time.content)
         return [results['dayOfTheWeek'].upper(), int(results['currentDateTime'][11:13])]
 
