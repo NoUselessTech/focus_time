@@ -71,14 +71,14 @@ def maintain_persistance():
 
 def get_time_info():
     try: 
-        current_time = requests.get("https://www.timeapi.io/api/Time/current/zone?timeZone=America/Denver")
+        current_time = requests.get("https://www.timeapi.io/api/Time/current/zone?timeZone=America/Costa_Rica")
         results = json.loads(current_time.content)
         return [results['dayOfWeek'].upper(), results['hour']]
     except:
-        current_time = requests.get("http://worldclockapi.com/api/json/mst/now")
+        current_time = requests.get("https://www.timeapi.io/api/Time/current/zone?timeZone=America/Costa_Rica")
         results = json.loads(current_time.content)
-        return [results['dayOfTheWeek'].upper(), int(results['currentDateTime'][11:13])]
-
+        return [results['dayOfWeek'].upper(), results['hour']]
+        
 def get_blocklist():
     blocklist_json = requests.get(block_list_url).text
     return json.loads(blocklist_json)
