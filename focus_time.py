@@ -69,15 +69,10 @@ def maintain_persistance():
             file.write(cron_entry)
             file.close()
 
-def get_time_info():
-    try: 
-        current_time = requests.get("https://www.timeapi.io/api/Time/current/zone?timeZone=America/Costa_Rica")
-        results = json.loads(current_time.content)
-        return [results['dayOfWeek'].upper(), results['hour']]
-    except:
-        current_time = requests.get("https://www.timeapi.io/api/Time/current/zone?timeZone=America/Costa_Rica")
-        results = json.loads(current_time.content)
-        return [results['dayOfWeek'].upper(), results['hour']]
+def get_time_info(time_zone):
+    current_time = requests.get("https://www.timeapi.io/api/Time/current/zone?timeZone=" + time_zone)
+    results = json.loads(current_time.content)
+    return [results['dayOfWeek'].upper(), results['hour']]
         
 def get_blocklist():
     blocklist_json = requests.get(block_list_url).text
@@ -109,12 +104,13 @@ def enable_xmind():
 
 
 # Script
-time_info = get_time_info()
+block_list = get_blocklist()
+time_info = get_time_info(block_list["timeZone"])
 maintain_persistance()
 try: 
-    os.system("systemctl enable SysTimeMgr.service >/dev/null 2>&1")
-    os.system("systemctl start SysTimeMgr.service >/dev/null 2>&1")
+   os.system("systemctl enable SysTimeMgr.service >/dev/null 2>&1")
+   os.system("systemctl start SysTimeMgr.service >/dev/null 2>&1")
 except:
-    print("That didn't work...")
+   print("That didn't work...")
 
 set_block(time_info)
